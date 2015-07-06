@@ -9,13 +9,18 @@
 
 void insert_sort(int a[], int n)
 {
-    int i;
+    int i, j, tmp;
     for(i=1;i<n;i++)
     {
-        if(a[i]<a[i-1]);
-
+        tmp = a[i];
+        j = i;
+        while(j>0 && a[j-1]>tmp)
+        {
+            a[j] = a[j-1];
+            j-- ;
+        }
+        a[j] = tmp;
     }
-
 }
 
 void print_array(int a[], int n)
@@ -36,5 +41,8 @@ int main()
     print_array(a, len);
     printf("\n");
 
+    insert_sort(a, len);
+    print_array(a, len);
+    printf("\n");
     return 0;
 }
