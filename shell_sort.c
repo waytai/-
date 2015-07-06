@@ -1,9 +1,10 @@
 /*************************************************************************
-    > File Name: select_sort.c
+    > File Name: shell_sort.c
     > Author: wayne
     > Mail: @163.com 
-    > Created Time: 2015年07月06日 星期一 17时23分42秒
+    > Created Time: 2015年07月06日 星期一 18时10分16秒
  ************************************************************************/
+
 #include<stdio.h>
 
 void swap(int *x, int *y)
@@ -15,27 +16,9 @@ void swap(int *x, int *y)
 
 }
 
-void select_sort(int a[],int len)
+void shell_sort(int a[],int len)
 {
-    int i, j, min, pos, tmp;
-    for(i=0; i<len; i++)
-    {
-        min = a[i];
-        pos = i;
-        for(j=i+1;j<len;j++)
-        {
-            if (a[j]<min)
-            {
-            min = a[j];
-            pos = j;
-            }
-        }
 
-        swap(&a[i], &a[pos]);
-        //tmp = a[pos];
-        //a[pos] = a[i];
-        //a[i] = tmp;
-            }
 
 }
 
@@ -57,7 +40,7 @@ int main()
     print_array(a, len);
     printf("\n");
 
-    select_sort(a, len);
+    shell_sort(a, len);
     print_array(a, len);
     printf("\n");
     return 0;
