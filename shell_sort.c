@@ -18,6 +18,22 @@ void swap(int *x, int *y)
 
 void shell_sort(int a[],int len)
 {
+    int inc, i,j, tmp;
+    for(inc = len/2; inc>0; inc /= 2)
+    {
+        for(i=inc;i<len;i++)
+        {
+            tmp = a[i];
+            for(j=i;j>=inc; j-=inc)
+            {
+                if(tmp<a[j-inc])
+                    a[j] = a[j-inc];
+                else
+                    break;
+            }
+            a[j] = tmp;
+        }
+    }
 
 
 }
