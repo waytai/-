@@ -26,35 +26,18 @@ void merge_array(int a[], int m, int b[], int n)
     i = m-1;
     j = n-1;
     t = m+n-1;
-    printf("i j t is %d %d %d\n", i,j,t);
     while(t>=0)
     {
-        if(i>0 && j>0)
+        if(i>=0  && a[i] >= b[j])
         {
-            if(a[i] > b[j])
-            {
-                a[t] = a[i];
-                i--;
-            }
-            else
-            {
-                a[t] = b[j];
-                j--;
-            }
+            a[t--] = a[i--];
         }
-        else if (i>=0)
+        else
         {
-            a[t] = a[i];
-            i--;
+            a[t--] = b[j--];
         }
-        else if(j>=0)
-        {
-            a[t] = b[j];
-            j--;
         }
-         
-        t--;
-         }
+
 }
 
 
