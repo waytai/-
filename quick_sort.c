@@ -10,20 +10,26 @@
  ************************************************************************/
 
 #include<stdio.h>
-void quick_sort(int a[],int len)
+
+void swap(int *a , int *b)
 {
-    int i, j, pivot;
-    pivot = a[0];
-    for(i = 1; i<len; i++)
-    {
-        if(a[i]<pivot)
-        {
-            swap(a[i], )
-
-        }
-
-    }
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
 }
+
+
+void quick_sort(int a[],int low, int high)
+{
+    int i;
+    i = patition(a, low-1, high);
+    if(low < high)
+    {
+    quick_sort(a, low, i-1);
+    quick_sort(a, i, high-1);
+    }
+    }
 
 void print_array(int a[], int n)
 {
@@ -34,6 +40,24 @@ void print_array(int a[], int n)
     }
 }
 
+int patition(int a[], int p, int q)
+{
+    int i;
+    int j = p -1 ;
+    int pivot = a[q-1];
+    for(i=p; i<q; i++)
+    {
+        if(a[i] <= pivot)
+        {
+            ++j;
+            swap(&a[i], &a[j]);
+        }
+    }
+    swap(&a[j], &pivot);
+    return j+1;
+}
+
+
 int main()
 {
     int a[] = {3,1,5,7,2,4,6,9,20};
@@ -43,7 +67,7 @@ int main()
     print_array(a, len);
     printf("\n");
 
-    quick_sort(a, len);
+    quick_sort(a, 0, len);
     print_array(a, len);
     printf("\n");
     return 0;
