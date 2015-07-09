@@ -55,30 +55,35 @@ void shell_sort(int a[],int len)
 void threesum(int* nums, int numsize, int *returnsize)
 {
     int i,j,a, m,n ,b,c;
-    int **ret_arry;
-    *ret_arry = (int *)malloc(sizeof(int)*(*returnsize));
+   // int **ret_arry;
+   // *ret_arry = (int *)malloc(sizeof(int)*(*returnsize));
     for(i=0; i<numsize; i++)
     {
         a = nums[i];
-
-        for(j=i+1,m=j,n=numsize-1; j<numsize; j++)
+        m = i+1;
+        n = numsize -1;
+        while(m<n)
         {
-            b = nums[m];
-            c = nums[n];
-            if(b+c > a)
+           b = nums[m];
+           c = nums[n];
+            if(b+c > -a)
             {
                 n--;
             }
-            else if(b+c < a)
+            else if(b+c < -a)
             {
                 m--;
             }
             else
             {
-                printf("%d %d ", nums[m], nums[n]);
+                printf("%d  %d  %d",i, m,n);
+                printf("\n");
+                printf("%d  %d  %d",nums[i], nums[m], nums[n]);
+                printf("\n");
+                break;
             }
-
         }
+
     }
 
 }
@@ -91,7 +96,8 @@ int main()
     int *returnsize = (int*)malloc(sizeof(int)*4);
     shell_sort(a, numsize);
     print_array(a, numsize);
-    //threesum(a, numsize, returnsize);
+    printf("\n");
+    threesum(a, numsize, returnsize);
     printf("\n");
     return 0;
 }
