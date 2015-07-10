@@ -52,10 +52,12 @@ void shell_sort(int a[],int len)
 
 
 
-void threesum(int* nums, int numsize, int *returnsize)
+int **threesum(int* nums, int numsize, int *returnsize)
 {
     int i,j,a, m,n ,b,c;
     int t =0;
+    int **res;
+    res =(int**)malloc(sizeof(int*));
     for(i=0; i<numsize; i++)
     {
         a = nums[i];
@@ -75,18 +77,21 @@ void threesum(int* nums, int numsize, int *returnsize)
             }
             else
             {
-                printf("-- %d  %d  %d",i, m,n);
-                printf("\n");
-                printf("*** %d  %d  %d",nums[i], nums[m], nums[n]);
-                m--;
-                n--;
-                printf("\n");
-                t++;
-                //break;
+
+               res = (int**)realloc(res,sizeof(int *));
+               res[t] = (int*)malloc(sizeof(int)*3);
+               res[t][0] = nums[i];
+               res[t][1] = nums[m];
+               res[t][2] = nums[n];
+               m--;
+               n--;
+               t++;
+               *returnsize = t;
             }
         }
 
     }
+    return res;
 }
 
  
@@ -94,11 +99,29 @@ int main()
 {
     int a[] = {-1, 0, 1, 2, -1, -4};
     int numsize = sizeof(a)/sizeof(int);
-    int returnsize = 3;
+    int returnsize = 0;
     shell_sort(a, numsize);
     print_array(a, numsize);
     printf("\n");
-    threesum(a, numsize, &returnsize);
+    int **ret;
+    ret = threesum(a, numsize, &returnsize);
+    printf("retrunsize is %d\n", returnsize);
+    int i,j;
+
+    for(i=0; i< returnsize; i++)
+    {
+        for(j=0; j<3 ; j++)
+        {
+            printf("--- %d  ", ret[i][j]);
+        }
+        printf("\n");
+    }
+    
+    for(i=0; i< returnsize; i++)
+    {
+        free(ret[i]);
+    }
+    free(ret);
     printf("\n");
     return 0;
 }
