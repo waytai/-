@@ -63,7 +63,7 @@ int **threesum(int* nums, int numsize, int *returnsize)
         a = nums[i];
         m = i+1;
         n = numsize -1;
-        while(m<n && m>=0 && n>=0)
+        while(m<n && m >= i+1 && n<= numsize-1)
         {
            b = nums[m];
            c = nums[n];
@@ -73,7 +73,7 @@ int **threesum(int* nums, int numsize, int *returnsize)
             }
             else if(b+c < -a)
             {
-                m--;
+                m++;
             }
             else
             {
@@ -83,10 +83,11 @@ int **threesum(int* nums, int numsize, int *returnsize)
                res[t][0] = nums[i];
                res[t][1] = nums[m];
                res[t][2] = nums[n];
-               m--;
-               n--;
+              // m++;
+              // n--;
                t++;
                *returnsize = t;
+               break;
             }
         }
 
