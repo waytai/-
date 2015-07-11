@@ -18,6 +18,20 @@ int *rotate_array(int a[], int len, int index)
 return b;
 }
 
+
+int find_min_ele(int c[], int len)
+{
+  int min_ele,i;
+  for(i=0,min_ele=c[0]; i<len; i++)
+	{
+	 if(min_ele>c[i])
+	{
+	 min_ele = c[i];
+	}
+	}
+return min_ele;
+}
+
 int main()
 {
 int a[] = {0, 1, 2, 3, 4, 5, 6, 7};
@@ -30,6 +44,10 @@ for(i=0; i<len; i++)
 {
 printf("%d  ", rotated_array[i]);
 }
+printf("\n");
+int min;
+min = find_min_ele(rotated_array, len);
+printf("%d\n", min);
 printf("\n");
 return 0;
 }
