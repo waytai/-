@@ -32,6 +32,20 @@ int find_min_ele(int c[], int len)
 return min_ele;
 }
 
+
+int search_min(int c[], int len)
+{
+ int min_ele,i, index;
+ index = (len-1)/2;
+ if (c[index] > c[0]) 
+  { 
+   }
+ else if (c[index] < c[0]) 
+  { 
+   }
+
+}
+
 int main()
 {
 int a[] = {0, 1, 2, 3, 4, 5, 6, 7};
