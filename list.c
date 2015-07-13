@@ -29,17 +29,18 @@ void insert_list_tail(list_s *list_p, int insert_data)
 int main()
 {
     list_s *list_b;
-
+    list_b = (list_s *)malloc(sizeof(list_s));
+    list_b->data = 100;
     int i;
     for(i=0; i<10; i++)
     {
         insert_list_tail(list_b, i);
     }
 
-    for(i=0; i<10; i++)
+    while(list_b->next != NULL)
     {
         printf("%d\n", list_b->data);
-        list_b =list_b->next; 
+        list_b = list_b->next;
     }
     return 0;
 }
