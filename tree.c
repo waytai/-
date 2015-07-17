@@ -50,6 +50,20 @@ void printmidorder(treenode node)
     printpostorder(node->right);
 }
 
+int getleafcount(treenode node)
+{
+    if(node == NULL)
+    {
+        return 0;
+    }
+    if(node->left == NULL && node->right == NULL)
+    {
+        return 1;
+    }
+
+    return getleafcount(node->left) + getleafcount(node->right);
+}
+
 
 void printpredorder(treenode node)
 {
@@ -74,6 +88,8 @@ int main()
     printmidorder(root);
     printf("\n");
     printpredorder(root);
+    printf("\n");
+    printf("%d  ", getleafcount(root));
     printf("\n");
     return 0;
 }
