@@ -39,6 +39,29 @@ void printpostorder(treenode node)
     printf("%d ", node->val);
 }
 
+void printmidorder(treenode node)
+{
+    if(node == NULL)
+    {
+        return;
+    }
+    printpostorder(node->left);
+    printf("%d ", node->val);
+    printpostorder(node->right);
+}
+
+
+void printpredorder(treenode node)
+{
+    if(node == NULL)
+    {
+        return;
+    }
+    printf("%d ", node->val);
+    printpostorder(node->left);
+    printpostorder(node->right);
+}
+
 int main()
 {
     treenode root = newnode(1);
@@ -47,6 +70,10 @@ int main()
     root->left->left = newnode(4);
     root->left->right = newnode(5);
     printpostorder(root);
+    printf("\n");
+    printmidorder(root);
+    printf("\n");
+    printpredorder(root);
     printf("\n");
     return 0;
 }
