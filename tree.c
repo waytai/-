@@ -45,9 +45,9 @@ void printmidorder(treenode node)
     {
         return;
     }
-    printpostorder(node->left);
+    printmidorder(node->left);
     printf("%d ", node->val);
-    printpostorder(node->right);
+    printmidorder(node->right);
 }
 
 int getleafcount(treenode node)
@@ -72,8 +72,8 @@ void printpredorder(treenode node)
         return;
     }
     printf("%d ", node->val);
-    printpostorder(node->left);
-    printpostorder(node->right);
+    printpredorder(node->left);
+    printpredorder(node->right);
 }
 
 int main()
