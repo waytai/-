@@ -57,18 +57,20 @@ int max_depth_tree(treenode node)
 
 int traval(treenode node)
 {
+    int left_top =0, right_top = 0;
     if(!node->left && !node->right)
     {
         return 1;
     }
-    else if(node->left)
+    if(node->right)
     {
-        return traval(node->left)+1;
+        left_top = traval(node->right)+1;
     }
-    else
+    if(node->left)
     {
-        return traval(node->right)+1;
+        right_top = traval(node->left)+1;
     }
+    return (left_top > right_top)?left_top:right_top;
 }
 
 int main()
