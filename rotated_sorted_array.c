@@ -33,17 +33,22 @@ return min_ele;
 }
 
 
-int search_min(int c[], int len)
+int search_min(int c[], int start, int end)
 {
- int min_ele,i, index;
- index = (len-1)/2;
- if (c[index] > c[0]) 
-  { 
-   }
- else if (c[index] < c[0]) 
-  { 
-   }
+ int index = start+(end-start)/2;
 
+ if (c[index] > c[start]) 
+  { 
+      search_min(c,index, end);
+   }
+ else if (c[index] < c[start]) 
+  { 
+      search_min(c, start, index);
+   }
+ else
+ {
+     return c[index];
+ }
 }
 
 int main()
@@ -63,5 +68,8 @@ int min;
 min = find_min_ele(rotated_array, len);
 printf("%d\n", min);
 printf("\n");
+int min_tow;
+min_tow = search_min(rotated_array, 0, len-1);
+printf("%d\n", min_tow);
 return 0;
 }
