@@ -30,7 +30,7 @@ treenode newnode(int data)
 int searchindex(int inorder[], int inordersize, int key)
 {
     int i;
-    for(i=0;i<inordersize-1;i++)
+    for(i=0;i<inordersize;i++)
     {
         if(key == inorder[i])
             return i;
@@ -48,7 +48,7 @@ struct TreeNode *buildTree(int *inorder, int inordersize, int *postorder, int po
     treenode root = newnode(postorder[postordersize-1]);
 
     int index = searchindex(inorder, inordersize, postorder[postordersize-1]);
-    index = index + 1;
+    //index = index + 1;
     if (index == -1)
         return NULL;
     root->left = buildTree(inorder,index, postorder,index);
