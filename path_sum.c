@@ -39,43 +39,18 @@ void printpostorder(treenode node)
     printf("%d ", node->val);
 }
 
-
-int max_sum(treenode node, int target)
+bool path_sum(treenode root, int target)
 {
-    if(!node)
+    if(root == NULL)
+        return false;
+    int remain = target - root->val;
+    if(root->left == NULL && root->right == NULL && remain == 0)
     {
-        return 0;
+        return true;
     }
-    else
-    {
-     return  travel_sum(node, target);
-    }
+    return path_sum(root->left, remain) || path_sum(root->right, remain);
 }
 
-int travel_sum(treenode node, int target)
-{
-    if(!node->left && !node->right)
-    {
-        printf("target is %d\n", target);
-        printf("val is %d\n", node->val);
-        if(node->val == target)
-            return 1;
-        else
-            return 0;
-    }
-
-    target = target - node->val;
-    if(node->left)
-    {
-        printf("left target is %d\n", target);
-        travel_sum(node->left, target);
-    }
-    if(node->right)
-    {
-        printf("right target is %d\n", target);
-        travel_sum(node->right, target);
-    }
-}
 
 
 int main()
@@ -96,7 +71,7 @@ int main()
     printpostorder(root);
     printf("\n");
     int ret;
-    ret = max_sum(root, target);
+    ret = path_sum(root, target);
     printf("ret is %d\n", ret);
     if(ret == 1)
     {
