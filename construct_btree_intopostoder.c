@@ -49,7 +49,6 @@ struct TreeNode *buildTree(int *inorder, int inordersize, int *postorder, int po
 
     int index = searchindex(inorder, inordersize, postorder[postordersize-1]);
     index = index + 1;
-    printf("---- %d\n", index);
     if (index == -1)
         return NULL;
     root->left = buildTree(inorder,index, postorder,index);
