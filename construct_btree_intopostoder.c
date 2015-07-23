@@ -27,12 +27,12 @@ treenode newnode(int data)
 }
 
 
-int searchindex(int *inorder, int inordersize, int key)
+int searchindex(int inorder[], int inordersize, int key)
 {
     int i;
     for(i=0;i<inordersize-1;i++)
     {
-        if(key = inorder[i])
+        if(key == inorder[i])
             return i;
     }
 
@@ -42,12 +42,19 @@ int searchindex(int *inorder, int inordersize, int key)
 
 struct TreeNode *buildTree(int *inorder, int inordersize, int *postorder, int postordersize)
 {
-    root = newnode(postoder[postordersize-1]);
-    int index = searchindex(inoder, inordersize, postoder[postordersize-1]);
+    if(inorder == NULL || postorder == NULL  || inordersize == 0|| postordersize ==0)
+        return NULL;
+    
+    treenode root = newnode(postorder[postordersize-1]);
+
+    int index = searchindex(inorder, inordersize, postorder[postordersize-1]);
+    index = index + 1;
+    printf("---- %d\n", index);
     if (index == -1)
         return NULL;
-    root->left = buildTree(inorder,index, postoder,index);
-    root->right = buildTree(inorder)
+    root->left = buildTree(inorder,index, postorder,index);
+    root->right = buildTree(inorder+index+1,inordersize-index-1, postorder+index, postordersize-index-1);
+    return root;
 }
 
 void printpostorder(treenode node)
@@ -64,11 +71,14 @@ void printpostorder(treenode node)
 int main()
 {
     int inorder[]  = {4,2,5,1,6,3,7};
-    int postoder[] = {4,5,2,6,7,3,1};
+    int postorder[] = {4,5,2,6,7,3,1};
     int inordersize= sizeof(inorder)/sizeof(int);
-    int postordersize = inordersize;
+    int postordersize ;
+    postordersize= inordersize;
     printf("%d\n", inordersize);
-
+    treenode tree = buildTree(inorder, inordersize, postorder, postordersize);
+    printpostorder(tree);
+    printf("\n");
     return 0;
 }
 
