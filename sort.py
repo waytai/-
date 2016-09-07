@@ -22,7 +22,7 @@ def insert_sort(alist):
     for i in range(len_list):
         index = a[i]
         for j in range(i+1, len_list):
-            if a[j] > index:
+            if a[j] < index:
                 a[i], a[j] = a[j], a[i]
             else:
                 index = a[j]
